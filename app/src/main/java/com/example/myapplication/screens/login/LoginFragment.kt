@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.widget.doOnTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -37,9 +36,6 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initAll()
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
-        pasText.doOnTextChanged { text, start, before, count ->
-
-        }
     }
 
     fun initAll(){

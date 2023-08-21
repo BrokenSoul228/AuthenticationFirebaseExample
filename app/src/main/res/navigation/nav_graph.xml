@@ -34,5 +34,41 @@
         <action
             android:id="@+id/action_startFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_firstButtonFragment"
+            app:destination="@id/firstButtonFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_secondButtonFragment"
+            app:destination="@id/secondButtonFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_thirdButtonFragment"
+            app:destination="@id/thirdButtonFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/firstButtonFragment"
+        android:name="com.example.myapplication.screens.firstpage.FirstButtonFragment"
+        android:label="fragment_first_button"
+        tools:layout="@layout/fragment_first_button" >
+        <action
+            android:id="@+id/action_firstButtonFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondButtonFragment"
+        android:name="com.example.myapplication.secondpage.SecondButtonFragment"
+        android:label="fragment_second_button"
+        tools:layout="@layout/fragment_second_button" >
+        <action
+            android:id="@+id/action_secondButtonFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/thirdButtonFragment"
+        android:name="com.example.myapplication.screens.thirdpage.ThirdButtonFragment"
+        android:label="fragment_third_button"
+        tools:layout="@layout/fragment_third_button" >
+        <action
+            android:id="@+id/action_thirdButtonFragment_to_startFragment"
+            app:destination="@id/startFragment" />
     </fragment>
 </navigation>
