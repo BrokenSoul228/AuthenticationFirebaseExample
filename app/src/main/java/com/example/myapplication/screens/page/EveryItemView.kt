@@ -24,25 +24,24 @@ class EveryItemView : AppCompatActivity() {
         endOfActivity()
     }
 
-    fun endOfActivity() {
+    private fun endOfActivity() {
         val btn = findViewById<Button>(R.id.buttonBack)
         btn.setOnClickListener {
             finish()
         }
     }
 
-    fun updateUI(movieName: String?, movieIcon: Int, movieDesc: String?, movieBack: Int?) {
+    private fun updateUI(movieName: String?, movieIcon: Int, movieDesc: String?, movieBack: Int?) {
         val textName = findViewById<TextView>(R.id.imageDescription)
         val iconMovie = findViewById<ImageView>(R.id.image)
         val textDesc = findViewById<TextView>(R.id.textDesc)
+        val linearLayout = findViewById<LinearLayout>(R.id.linear)
         textName.text = movieName
         textDesc.text = movieDesc
         iconMovie.setImageResource(movieIcon)
-        updateBackground(movieBack)
-    }
-    fun updateBackground(movieBack : Int?) {
-        val linearLayout = findViewById<LinearLayout>(R.id.linear)
+
         if (movieBack == 1) {
+            linearLayout.setBackgroundResource(R.drawable.marvelback)
             val brightnessMatrix = ColorMatrix().apply {
                 val brightness = 0.5f // Новое значение яркости (от 0 до 1)
                 set(
