@@ -1,11 +1,12 @@
 package com.example.myapplication.screens.start
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
-import android.widget.RadioGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -13,18 +14,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentStartBinding
-import com.google.android.material.button.MaterialButton
 
 class StartFragment : Fragment() {
 
     private lateinit var binding : FragmentStartBinding
     private lateinit var viewModel : StartViewModel
-    private lateinit var btnLogOut : MaterialButton
-    private lateinit var radio1 : RadioButton
-    private lateinit var radio2 : RadioButton
-    private lateinit var radio3 : RadioButton
-    private lateinit var radioGroup : RadioGroup
-    private lateinit var textView2 : TextView
+    private lateinit var movieText : TextView
+    private lateinit var animeText : TextView
+    private lateinit var serialText : TextView
+    private lateinit var movieCollage : ImageView
+    private lateinit var animeCollage : ImageView
+    private lateinit var serialCollage : ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,42 +37,25 @@ class StartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[StartViewModel::class.java]
-        btnLogOut = binding.logOut
-        textView2 = binding.textView2
-        radioGroup = binding.radioGroup
+        movieText = binding.movieText
+        animeText = binding.animeText
+        serialText = binding.serialText
 
-        btnLogOut.setOnClickListener {
-            viewModel.logOut()
-            findNavController().navigate(R.id.action_startFragment_to_loginFragment)
+        movieCollage = binding.movieCollage
+        animeCollage = binding.animeCollage
+        serialCollage = binding.serialCollage
+
+        movieText.setOnClickListener {
+            Handler(Looper.getMainLooper()).postDelayed({
+                findNavController().navigate(R.id.action_startFragment_to_moviepage)
+            }, 300)
         }
-
-        radioGroup.setOnCheckedChangeListener { radioGroup, i ->
-            radio1 = binding.radio1
-            radio2 = binding.radio2
-            radio3 = binding.radio3
-
-            if (radio1.isChecked){
-                textView2.text = radio1.text
-                textView2.setOnClickListener {
-                    findNavController().navigate(R.id.action_startFragment_to_firstButtonFragment)
-                }
-            }
-            else if(radio2.isChecked){
-                textView2.text = radio2.text
-                textView2.setOnClickListener {
-                    findNavController().navigate(R.id.action_startFragment_to_secondButtonFragment)
-                }
-            }
-            else if(radio3.isChecked){
-                textView2.text = radio3.text
-                textView2.setOnClickListener {
-                    findNavController().navigate(R.id.action_startFragment_to_thirdButtonFragment)
-                }
-            }
-            else{
-                textView2.text = "Start Fragment"
-            }
+        animeText.setOnClickListener {
+            findNavController().navigate(R.id.action_startFragment_to_animepage)
         }
-
+        serialText.setOnClickListener {
+            findNavController().navigate(R.id.action_startFragment_to_thirdButtonFragment)
+        }
     }
+
 }

@@ -1,5 +1,6 @@
-package com.example.myapplication.screens.firstpage
+package com.example.myapplication.screens.movie
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,14 +18,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.databinding.FragmentFirstButtonBinding
+import com.example.myapplication.databinding.MoviePageBinding
 import com.example.myapplication.screens.adapter.AdapterCatalog
 import com.example.myapplication.screens.page.EveryItemView
 import java.util.Locale
 
-class FirstButtonFragment : Fragment() {
+class MoviePage : Fragment() {
 
-    private lateinit var binding: FragmentFirstButtonBinding
+    private lateinit var binding: MoviePageBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var pointerBack: ImageView
     private lateinit var spinner: Spinner
@@ -39,9 +40,9 @@ class FirstButtonFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFirstButtonBinding.inflate(inflater, container, false )
+        binding = MoviePageBinding.inflate(inflater, container, false)
         return binding.root
-    }
+        }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,26 +50,28 @@ class FirstButtonFragment : Fragment() {
         recyclerView = binding.recyclerView
         searchView = binding.searchView
         cardView = binding.cardView
+
         spinner = binding.spinner
         searchView.isIconifiedByDefault = false
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         addMovie()
-
         val genreAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, listFilters)
         genreAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = genreAdapter
-
+        spinner.setSelection(0,false)
         adapter = AdapterCatalog(requireContext(), listMovie)
         recyclerView.adapter = adapter
         adapter.setOnItemClickListener(object  : AdapterCatalog.onItemClickListener {
             override fun onItemClick(position: Int) {
+                val selectedMovie = adapter.getItemAtPosition(position)
                 val intent = Intent(requireContext(), EveryItemView::class.java)
-                intent.putExtra("movie_name", listMovie[position].name)
-                intent.putExtra("movie_image", listMovie[position].intro)
-                intent.putExtra("movie_description", listMovie[position].descriptionMovie)
-                intent.putExtra("movie_back", listMovie[position].backgroundMode)
-                startActivity(intent)
+                val trans : Bundle = ActivityOptions.makeSceneTransitionAnimation(requireActivity()).toBundle()
+                intent.putExtra("movie_name", selectedMovie.name)
+                intent.putExtra("movie_image", selectedMovie.intro)
+                intent.putExtra("movie_description", selectedMovie.descriptionMovie)
+                intent.putExtra("movie_back", selectedMovie.backgroundMode)
+                startActivity(intent, trans)
             }
         })
 
@@ -125,18 +128,18 @@ class FirstButtonFragment : Fragment() {
         listMovie.add(MovieCatalog("The Godfather", listOf("Crime", "Drama"), R.drawable.godfather, "175 min","The Godfather - The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",null));
         listMovie.add(MovieCatalog("Pulp Fiction", listOf("Crime", "Drama"), R.drawable.pupli, "154 min","Pulp Fiction - The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption. ",null));
         listMovie.add(MovieCatalog("The Dark Knight", listOf("Action", "Crime", "Drama"), R.drawable.thedarkknight, "152 min","The Dark Knight - When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham. ",null));
-        listMovie.add(MovieCatalog("Fight Club", listOf("Drama"), R.drawable.oppenheimer, "139 min","Fight Club - An insomniac office worker forms an underground fight club that evolves into something much, much more.",null));
+        listMovie.add(MovieCatalog("Fight Club", listOf("Drama"), R.drawable.fightclub, "139 min","Fight Club - An insomniac office worker forms an underground fight club that evolves into something much, much more.",null));
         listMovie.add(MovieCatalog("Inception", listOf("Action", "Adventure", "Sci-Fi"), R.drawable.inception, "148 min","Inception - A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.",null));
         listMovie.add(MovieCatalog("Forrest Gump", listOf("Drama", "Romance"), R.drawable.forestgump, "142 min","Forrest Gump - The presidencies of Kennedy to Johnson seen through the eyes of the naive Forrest Gump.",null));
         listMovie.add(MovieCatalog("The Matrix", listOf("Action", "Sci-Fi"), R.drawable.thematrix, "136 min","The Matrix - A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers. ",null));
-        listMovie.add(MovieCatalog("Jurassic Park", listOf("Adventure", "Sci-Fi"), R.drawable.park, "127 min","Jurassic Park - A pragmatic paleontologist and a chaotic mathematician's team race to survive in an island overrun by dinosaurs.",null));
+        listMovie.add(MovieCatalog("Jurassic Park", listOf("Adventure", "Sci-Fi"), R.drawable.parkrecreation, "127 min","Jurassic Park - A pragmatic paleontologist and a chaotic mathematician's team race to survive in an island overrun by dinosaurs.",null));
         listMovie.add(MovieCatalog("Star Wars: Episode IV - A New Hope", listOf("Action", "Adventure", "Fantasy"), R.drawable.starwarsfour, "121 min","Star Wars: Episode IV - A New Hope - Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee, and two droids to save the galaxy from the Empire's world-destroying battle station.",null));
         listMovie.add(MovieCatalog("Titanic", listOf("Drama", "Romance"), R.drawable.titanic, "195 min","Titanic - A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.",null));
         listMovie.add(MovieCatalog("The Lord of the Rings: The Fellowship of the Ring", listOf("Action", "Adventure", "Drama"), R.drawable.lordring, "178 min","The Lord of the Rings: The Fellowship of the Ring - A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",null));
         listMovie.add(MovieCatalog("Avatar", listOf("Action", "Adventure", "Fantasy"), R.drawable.avatar, "162 min","Avatar - A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",null));
         listMovie.add(MovieCatalog("Avengers: Endgame", listOf("Action", "Adventure", "Drama"), R.drawable.avengers, "181 min","Avengers: Endgame - After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more to undo Thanos' actions and restore balance to the universe. ",1));
         listMovie.add(MovieCatalog("The Lion King", listOf("Animation", "Adventure", "Drama"), R.drawable.lionking, "88 min","The Lion King - Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself.",null));
-        listMovie.add(MovieCatalog("The Terminator", listOf("Action", "Sci-Fi"), R.drawable.oppenheimer, "107 min","The Terminator - A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation. ",null));
+        listMovie.add(MovieCatalog("The Terminator", listOf("Action", "Sci-Fi"), R.drawable.terminator, "107 min","The Terminator - A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation. ",null));
         listMovie.add(MovieCatalog("Inglourious Basterds", listOf("Adventure", "Drama", "War"), R.drawable.inglurius, "153 min","Inglourious Basterds - In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish U.S. soldiers coincides with a theater owner's vengeful plans for the same.",null));
         listMovie.add(MovieCatalog("The Social Network", listOf("Biography", "Drama"), R.drawable.social, "120 min","The Social Network - As Harvard student Mark Zuckerberg creates the social networking site that would become known as Facebook, he is sued by the twins who claimed he stole their idea, and by the co-founder who was later squeezed out of the business.",null));
         listMovie.add(MovieCatalog("Deadpool", listOf("Action", "Adventure", "Comedy"), R.drawable.deadpool, "108 min","Deadpool - A wisecracking mercenary gets experimented on and becomes immortal but ugly, and sets out to track down the man who ruined his looks. ",1));
@@ -170,7 +173,14 @@ class FirstButtonFragment : Fragment() {
         listMovie.add(MovieCatalog("The Martian", listOf("Adventure", "Drama", "Sci-Fi"), R.drawable.martian, "144 min","The Martian - An astronaut becomes stranded on Mars after his team assume him dead, and he must rely on his ingenuity to find a way to signal to Earth that he is alive.",null));
         listMovie.add(MovieCatalog("Gravity", listOf("Drama", "Sci-Fi", "Thriller"), R.drawable.gravity, "91 min","Gravity - Two astronauts work together to survive after an accident leaves them stranded in space.",null));
         listMovie.add(MovieCatalog("Black Panther", listOf("Action", "Adventure", "Sci-Fi"), R.drawable.panter, "134 min","Black Panther - T'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country's past. ",1));
-        listMovie.add(MovieCatalog("Casino Royale", listOf("Action", "Adventure", "Thriller"), R.drawable.oppenheimer, "144 min","Casino Royale - After earning 00 status and a license to kill, Secret Agent James Bond sets out on his first mission as 007. Bond must defeat a private banker funding terrorists in a high-stakes game of poker at Casino Royale.",null));
+        listMovie.add(MovieCatalog("Casino Royale", listOf("Action", "Adventure", "Thriller"), R.drawable.casino, "144 min","Casino Royale - After earning 00 status and a license to kill, Secret Agent James Bond sets out on his first mission as 007. Bond must defeat a private banker funding terrorists in a high-stakes game of poker at Casino Royale.",null));
+        listMovie.add(MovieCatalog("Spider-Man", listOf("Action", "Adventure"), R.drawable.spiderman, "121 min","Spider-Man - When bitten by a genetically modified spider, a nerdy, shy, and awkward high school student gains spider-like abilities that he eventually must use to fight evil as a superhero after tragedy strikes his family.",2));
+        listMovie.add(MovieCatalog("Spider-Man 2", listOf("Action", "Adventure"), R.drawable.spiderman2, "127 min","Spider-Man 2 - Peter Parker struggles to balance his crime-fighting duties as Spider-Man with the demands of his personal life, including his relationship with Mary Jane Watson.",2));
+        listMovie.add(MovieCatalog("Spider-Man 3", listOf("Action", "Adventure"), R.drawable.spiderman3, "139 min","Spider-Man 3 - Peter Parker's Spider-Man suit becomes infused with an alien symbiote that turns him into a darker version of himself while dealing with the arrival of two new villains: Sandman and Venom.",2));
+        listMovie.add(MovieCatalog("The Amazing Spider-Man", listOf("Action", "Adventure"), R.drawable.amazingspiderman, "136 min","The Amazing Spider-Man - After being bitten by a genetically altered spider, teenager Peter Parker gains newfound spider-like powers and tries to unravel the mystery of his parents' disappearance while battling the villainous Lizard.",3));
+        listMovie.add(MovieCatalog("The Amazing Spider-Man 2", listOf("Action", "Adventure"), R.drawable.amazingspiderman2, "142 min","The Amazing Spider-Man 2 - Peter Parker faces new challenges as he battles Electro and the Green Goblin while trying to uncover the truth about his father's past.",3));
+        listMovie.add(MovieCatalog("Spider-Man: Homecoming", listOf("Action", "Adventure"), R.drawable.homecoming, "133 min","Spider-Man: Homecoming - Peter Parker tries to balance his life as a high school student and his superhero alter ego, while also facing off against the villainous Vulture.",4));
+        listMovie.add(MovieCatalog("Spider-Man: Far From Home", listOf("Action", "Adventure"), R.drawable.farfromhome, "129 min","Spider-Man: Far From Home - Peter Parker goes on a school trip to Europe, where he must team up with Mysterio to stop the Elementals from wreaking havoc across the continent.",4));
     }
 
     override fun onStart() {

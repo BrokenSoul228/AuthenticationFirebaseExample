@@ -1,19 +1,14 @@
 package com.example.myapplication.screens.adapter
 
 import android.content.Context
-import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.screens.firstpage.MovieCatalog
+import com.example.myapplication.screens.movie.MovieCatalog
 
 class AdapterCatalog(var context: Context, var listMovie: List<MovieCatalog>) :
     RecyclerView.Adapter<AdapterCatalog.MovieViewHolder>() {
@@ -46,6 +41,10 @@ class AdapterCatalog(var context: Context, var listMovie: List<MovieCatalog>) :
     fun setFilteredList(listMovie: List<MovieCatalog>){
         this.listMovie = listMovie
         notifyDataSetChanged()
+    }
+
+    fun getItemAtPosition(position: Int): MovieCatalog{
+        return listMovie[position]
     }
 
     override fun onCreateViewHolder(

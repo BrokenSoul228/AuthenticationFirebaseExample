@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Choose Your Favorite</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="serial">Serial</string>
+    <string name="anime">Anime</string>
+    <string name="m_vie">Mvie</string>
 </resources>

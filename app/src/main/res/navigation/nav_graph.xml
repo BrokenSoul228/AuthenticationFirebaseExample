@@ -3,59 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/startFragment">
 
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.myapplication.screens.login.LoginFragment"
-        android:label="LoginFragment"
-        tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/action_loginFragment_to_registreFragment"
-            app:destination="@id/registreFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_startFragment2"
-            app:destination="@id/startFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/registreFragment"
-        android:name="com.example.myapplication.screens.registre.RegistreFragment"
-        android:label="RegistreFragment"
-        tools:layout="@layout/fragment_registre">
-        <action
-            android:id="@+id/action_registreFragment_to_startFragment"
-            app:destination="@id/startFragment" />
-    </fragment>
     <fragment
         android:id="@+id/startFragment"
         android:name="com.example.myapplication.screens.start.StartFragment"
         android:label="StartFragment"
         tools:layout="@layout/fragment_start">
         <action
-            android:id="@+id/action_startFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_startFragment_to_moviepage"
+            app:destination="@id/moviepage" />
         <action
-            android:id="@+id/action_startFragment_to_firstButtonFragment"
-            app:destination="@id/firstButtonFragment" />
-        <action
-            android:id="@+id/action_startFragment_to_secondButtonFragment"
-            app:destination="@id/secondButtonFragment" />
+            android:id="@+id/action_startFragment_to_animepage"
+            app:destination="@id/animepage" />
         <action
             android:id="@+id/action_startFragment_to_thirdButtonFragment"
             app:destination="@id/thirdButtonFragment" />
     </fragment>
     <fragment
-        android:id="@+id/firstButtonFragment"
-        android:name="com.example.myapplication.screens.firstpage.FirstButtonFragment"
+        android:id="@+id/moviepage"
+        android:name="com.example.myapplication.screens.movie.MoviePage"
         android:label="fragment_first_button"
-        tools:layout="@layout/fragment_first_button" >
+        tools:layout="@layout/movie_page">
         <action
             android:id="@+id/action_firstButtonFragment_to_startFragment"
             app:destination="@id/startFragment" />
     </fragment>
     <fragment
-        android:id="@+id/secondButtonFragment"
-        android:name="com.example.myapplication.secondpage.SecondButtonFragment"
+        android:id="@+id/animepage"
+        android:name="com.example.myapplication.screens.anime.AnimePage"
         android:label="fragment_second_button"
         tools:layout="@layout/fragment_second_button" >
         <action

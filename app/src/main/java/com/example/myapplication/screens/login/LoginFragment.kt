@@ -45,19 +45,19 @@ class LoginFragment : Fragment() {
         btnSingIn = binding.singIn
     }
 
-    @SuppressLint("ResourceType")
-    override fun onStart() {
-        super.onStart()
-        register.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_registreFragment)
-        }
-        btnSingIn.setOnClickListener {
-            viewModel.singInUser(
-                logText.text.toString(),
-                pasText.text.toString(),
-                requireContext()
-            )
-            findNavController().navigate(R.id.action_loginFragment_to_startFragment2)
-        }
-    }
+//    @SuppressLint("ResourceType")
+//    override fun onStart() {
+//        super.onStart()
+//        register.setOnClickListener {
+//            findNavController().navigate(R.id.action_loginFragment_to_registreFragment)
+//        }
+//        btnSingIn.setOnClickListener {
+//            viewModel.singInUser(
+//                logText.text.toString(),
+//                pasText.text.toString(),
+//                requireContext()
+//            )
+//            findNavController().navigate(R.id.action_loginFragment_to_startFragment2)
+//        }
+//    }
 }

@@ -1,6 +1,6 @@
-package com.example.myapplication.screens.firstpage
+package com.example.myapplication.screens.anime
 
-data class MovieCatalog(
+data class AnimeCatalog(
     val name: String,
     val genre: List<String>,
     val intro: Int,

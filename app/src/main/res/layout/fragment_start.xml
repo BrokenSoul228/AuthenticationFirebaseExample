@@ -12,64 +12,119 @@
         android:layout_height="match_parent"
         tools:context=".screens.start.StartFragment">
 
+        <ImageView
+            android:id="@+id/movieCollage"
+            android:layout_width="421dp"
+            android:layout_height="224dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/collage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </ImageView>
+
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/movieText"
+            android:layout_width="349dp"
+            android:layout_height="204dp"
+            android:fontFamily="@font/moviefont"
+            android:letterSpacing="0.1"
+            android:text="@string/m_vie"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="70sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/movieCollage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/movieCollage">
+        </TextView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start Screen"
-            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieCollage">
+
+            <ImageView
+                android:id="@+id/animeCollage"
+                android:layout_width="421dp"
+                android:layout_height="243dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/animecollage"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/animeText"
+                android:layout_width="340dp"
+                android:layout_height="214dp"
+                android:fontFamily="@font/manga"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:text="@string/anime"
+                android:textColor="@color/white"
+                android:textSize="70sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/animeCollage"
+                app:layout_constraintStart_toStartOf="@+id/animeCollage"
+                app:layout_constraintTop_toTopOf="@+id/animeCollage">
+            </TextView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.351" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            tools:ignore="MissingConstraints">
 
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2">
+            <ImageView
+                android:id="@+id/serialCollage"
+                android:layout_width="418dp"
+                android:layout_height="272dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/serialcollage"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+            </ImageView>
 
-            <RadioButton
-                android:id="@+id/radio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="First button">
+            <TextView
+                android:id="@+id/serialText"
+                android:layout_width="355dp"
+                android:layout_height="217dp"
+                android:fontFamily="@font/serial"
+                android:gravity="center"
+                android:text="@string/serial"
+                android:textColor="@color/white"
+                android:textSize="70sp"
+                app:layout_constraintBottom_toBottomOf="@+id/serialCollage"
+                app:layout_constraintEnd_toEndOf="@+id/serialCollage"
+                app:layout_constraintStart_toStartOf="@+id/serialCollage"
+                app:layout_constraintTop_toTopOf="@+id/serialCollage">
+            </TextView>
 
-            </RadioButton>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <RadioButton
-                android:id="@+id/radio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Second button">
 
-            </RadioButton>
 
-            <RadioButton
-                android:id="@+id/radio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Third button">
+        <!--        <com.google.android.material.button.MaterialButton-->
+        <!--            android:id="@+id/logOut"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Log Out"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent">-->
 
-            </RadioButton>
-
-        </RadioGroup>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/logOut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Log Out"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2">
-
-        </com.google.android.material.button.MaterialButton>
+        <!--        </com.google.android.material.button.MaterialButton>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

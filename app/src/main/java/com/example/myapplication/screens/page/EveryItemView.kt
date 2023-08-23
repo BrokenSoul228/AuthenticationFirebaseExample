@@ -35,28 +35,37 @@ class EveryItemView : AppCompatActivity() {
         val textName = findViewById<TextView>(R.id.imageDescription)
         val iconMovie = findViewById<ImageView>(R.id.image)
         val textDesc = findViewById<TextView>(R.id.textDesc)
-        val linearLayout = findViewById<LinearLayout>(R.id.linear)
         textName.text = movieName
         textDesc.text = movieDesc
         iconMovie.setImageResource(movieIcon)
 
-        if (movieBack == 1) {
-            linearLayout.setBackgroundResource(R.drawable.marvelback)
-            val brightnessMatrix = ColorMatrix().apply {
-                val brightness = 0.5f // Новое значение яркости (от 0 до 1)
-                set(
-                    floatArrayOf(
-                        brightness, 0f, 0f, 0f, 0f,
-                        0f, brightness, 0f, 0f, 0f,
-                        0f, 0f, brightness, 0f, 0f,
-                        0f, 0f, 0f, 1f, 0f
-                    )
-                )
-            }
-            // Применяем фильтр к изображению
-            val drawable = ContextCompat.getDrawable(this, R.drawable.marvelback)?.mutate()
-            drawable?.colorFilter = ColorMatrixColorFilter(brightnessMatrix)
-            linearLayout.background = drawable
+        when (movieBack) {
+            1 -> setImageFromDraw(R.drawable.marvelback, 0.5f)
+
+            2 -> setImageFromDraw(R.drawable.spiderback, 0.7f)
+
+            3 -> setImageFromDraw(R.drawable.amazingback, 0.5f)
+
+            4 -> setImageFromDraw(R.drawable.tomback, 0.5f)
         }
+    }
+
+    fun setImageFromDraw(image : Int, brightnessImage : Float){
+        val linearLayout = findViewById<LinearLayout>(R.id.linear)
+        linearLayout.setBackgroundResource(image)
+        val brightnessMatrix = ColorMatrix().apply {
+            val brightness = brightnessImage // Новое значение яркости (от 0 до 1)
+            set(
+                floatArrayOf(
+                    brightness, 0f, 0f, 0f, 0f,
+                    0f, brightness, 0f, 0f, 0f,
+                    0f, 0f, brightness, 0f, 0f,
+                    0f, 0f, 0f, 1f, 0f
+                )
+            )
+        }
+        val drawable = ContextCompat.getDrawable(this, image)?.mutate()
+        drawable?.colorFilter = ColorMatrixColorFilter(brightnessMatrix)
+        linearLayout.background = drawable
     }
 }

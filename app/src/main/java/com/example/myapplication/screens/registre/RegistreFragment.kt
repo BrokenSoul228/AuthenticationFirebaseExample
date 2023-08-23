@@ -41,16 +41,16 @@ class RegistreFragment : Fragment() {
         edPassword = binding.edPassword
     }
 
-    override fun onStart() {
-        super.onStart()
-        regBtn.setOnClickListener {
-            viewModel.registerNewUser(
-                edEmail.text.toString(), edPassword.text.toString(), requireContext()
-            )
-            findNavController().navigate(R.id.action_registreFragment_to_startFragment)
-        }
-        singView.setOnClickListener {
-            findNavController().popBackStack()
-        }
-    }
+//    override fun onStart() {
+//        super.onStart()
+//        regBtn.setOnClickListener {
+//            viewModel.registerNewUser(
+//                edEmail.text.toString(), edPassword.text.toString(), requireContext()
+//            )
+//            findNavController().navigate(R.id.action_registreFragment_to_startFragment)
+//        }
+//        singView.setOnClickListener {
+//            findNavController().popBackStack()
+//        }
+//    }
 }
