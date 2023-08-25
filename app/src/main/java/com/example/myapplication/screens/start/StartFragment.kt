@@ -22,9 +22,6 @@ class StartFragment : Fragment() {
     private lateinit var movieText : TextView
     private lateinit var animeText : TextView
     private lateinit var serialText : TextView
-    private lateinit var movieCollage : ImageView
-    private lateinit var animeCollage : ImageView
-    private lateinit var serialCollage : ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,10 +37,6 @@ class StartFragment : Fragment() {
         movieText = binding.movieText
         animeText = binding.animeText
         serialText = binding.serialText
-
-        movieCollage = binding.movieCollage
-        animeCollage = binding.animeCollage
-        serialCollage = binding.serialCollage
 
         movieText.setOnClickListener {
             Handler(Looper.getMainLooper()).postDelayed({
