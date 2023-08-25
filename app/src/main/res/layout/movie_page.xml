@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardView"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".screens.movie.MoviePage">
+
+    <!--    android:background="@drawable/gradient_list"-->
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="8dp"
         app:cardCornerRadius="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner">
@@ -27,23 +30,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pointerBack"
-            app:showAsAction="collapseActionView|ifRoom">
-        </SearchView>
+            app:showAsAction="collapseActionView|ifRoom"></SearchView>
 
     </androidx.cardview.widget.CardView>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
+        style="@style/Widget.AppCompat.SearchView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        style="@style/Widget.AppCompat.SearchView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnRandom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2">
-    </androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintTop_toBottomOf="@+id/cardView2"></androidx.recyclerview.widget.RecyclerView>
 
     <ImageView
         android:id="@+id/pointerBack"
@@ -65,5 +66,20 @@
         app:layout_constraintStart_toEndOf="@+id/pointerBack"
         app:layout_constraintTop_toTopOf="parent">
     </Spinner>
+
+    <Button
+        android:id="@+id/btnRandom"
+        android:layout_width="317dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/buttonback"
+        android:text="Take Random Movie"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView">
+    </Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

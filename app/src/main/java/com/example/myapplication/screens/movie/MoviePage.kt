@@ -2,12 +2,15 @@ package com.example.myapplication.screens.movie
 
 import android.app.ActivityOptions
 import android.content.Intent
+import android.graphics.drawable.AnimationDrawable
+import android.graphics.drawable.StateListDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Spinner
@@ -31,6 +34,7 @@ class MoviePage : Fragment() {
     private lateinit var spinner: Spinner
     private lateinit var searchView: SearchView
     private lateinit var adapter: AdapterCatalog
+    private lateinit var btnRandom: Button
     private lateinit var cardView: ConstraintLayout
 
     private val listFilters = listOf("Drama", "Comedy", "Horror", "Sci-Fi", "Action", "Adventure")
@@ -50,6 +54,7 @@ class MoviePage : Fragment() {
         recyclerView = binding.recyclerView
         searchView = binding.searchView
         cardView = binding.cardView
+        btnRandom = binding.btnRandom
 
         spinner = binding.spinner
         searchView.isIconifiedByDefault = false
@@ -64,6 +69,7 @@ class MoviePage : Fragment() {
         recyclerView.adapter = adapter
         adapter.setOnItemClickListener(object  : AdapterCatalog.onItemClickListener {
             override fun onItemClick(position: Int) {
+                searchView.clearFocus()
                 val selectedMovie = adapter.getItemAtPosition(position)
                 val intent = Intent(requireContext(), EveryItemView::class.java)
                 val trans : Bundle = ActivityOptions.makeSceneTransitionAnimation(requireActivity()).toBundle()
@@ -85,6 +91,16 @@ class MoviePage : Fragment() {
                 return true
             }
         })
+
+        btnRandom.setOnClickListener {
+            val random = listMovie.random()
+            val intent = Intent(requireContext(), EveryItemView::class.java)
+            intent.putExtra("movie_name", random.name)
+            intent.putExtra("movie_image", random.intro)
+            intent.putExtra("movie_description", random.descriptionMovie)
+            intent.putExtra("movie_back", random.backgroundMode)
+            startActivity(intent)
+        }
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -122,6 +138,10 @@ class MoviePage : Fragment() {
         }
         adapter.setFilteredList(filteredList)
     }
+
+//    private fun takeOnClickRandomMovie(){
+//            val randomItem = listMovie.random()
+//    }
 
     fun addMovie(){
         listMovie.add(MovieCatalog("The Shawshank Redemption", listOf("Drama"), R.drawable.shawshank, "142 min","The Shawshank Redemption - Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",null));

@@ -30,7 +30,7 @@ class StartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_start, container, false)
+        binding = FragmentStartBinding.inflate(inflater, container, false)
         return binding.root
     }
 
